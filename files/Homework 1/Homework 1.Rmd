@@ -3,7 +3,8 @@ title: "Homework 1"
 author: "Alp Serdaroğlu"
 output:
   html_document:
-    code_folding: show
+    code_folding: hide
+    toc: yes
   pdf_document: default
 ---
 
@@ -70,7 +71,7 @@ head(credit_table)
 ## Net Amount of Consumer Loans Given 
 By calculating the monthly change in the total consumer loans volume, one can calculate the net amount of consumer loans given in a month. This data can be visualized as follows:
 
-```{r Consumer Loan, echo=FALSE, warning=FALSE}
+```{r Consumer Loan, echo=TRUE, warning=FALSE}
 ggplot(credit_table, aes(x = Tarih))+
   geom_line(aes(y=NewCredit))+
   labs(title = "New Consumer Loans Given", x = "Date", y = "New Consumer Loans Given (Million TL)")
@@ -85,7 +86,7 @@ Although, the data shows fluctuations over the years, no obvious seasonality can
 ```{r Consumer Loan 2, warning=FALSE}
 ggplot(credit_table, aes(y = NewCredit, x = as.factor(year(Tarih))))+
   geom_boxplot()+
-  labs(title = "Distribution of Consumer Loans Based on the Year", x = "Year", y = "Consumer Loans")
+  labs(title = "Distribution of New Consumer Loans Based on the Year", x = "Year", y = "Consumer Loans")
 ```
 
 There can be various mechanisms affecting the amount of consumer loans. In this study, interest rates, house sales, and unemployment rate are analyzed.
@@ -102,7 +103,7 @@ ggplot(credit_table,aes(x= Tarih, ylab('Credit Interst Rate')))+
 
 There is an inverse relation between the interest rates and new consumer loans given. The time series for the interest rates is more stable in 2016 and 2017. Its slight decrease around the fourth quarter of 2016 and first quarter of 2017 is reflected in the new credit data. There is an apparent increasing trend in the new given loans around the same time period. The variance of the interest rates increases after the second half of 2018. The changes in the interest rates are reflected inversely in the credit data. Sharp increases in the rates in the second half of 2018 and Q4 of 2019 causes a decrease in the new consumer loans. Also, decreasing interest rates in 2018 Q4, 2019 Q1 and second half of 2019 result in a decrease in consumer loans. The inverse relationship between these two variables is clearly seen in the graph below.
 
-```{r Interest Rates 2, warning=FALSE}
+```{r Interest Rates 2, message=FALSE, warning=FALSE}
 ggplot(credit_table,aes(x = CreditInterestRate, y = NewCredit))+
   geom_point()+
   geom_smooth()+
@@ -113,14 +114,14 @@ ggplot(credit_table,aes(x = CreditInterestRate, y = NewCredit))+
 ## House Sales
 
 Another statistic that can be correlated with the new consumer loans is the number of house sales. As mortgages is an important component of the consumer loans, its volume can be affected by the housing market. Considerable part of house sales is financed through mortgages. An increase in the number of house sales means that there are more candidates for a mortgage. It is expected that there is positive relationship between consumer loans and house sales.
-```{r Housing}
+```{r Housing, message=FALSE}
 ggplot(credit_table,aes(x= Tarih))+
   geom_line(aes(y = credit_table$HouseSales))+
     labs(title = "House Sales", x = "Date", y = "House Sales (Units)")
 ```
 
 Based on the above line graph, house sales through time fluctuates greatly. However, the trend after 2019, in which the sales decrease first and then increase, indicates that there may be a positive relation between loans and house sales. Before rising sharply in 2019, the data shows some seasonality. House sales tend to increase in the second and fourth quarter of the year. Also, there is one outlier which is considerably larger than other data points. To get a more accurate view, scatter plot of these diagrams are drawn.
-```{r Housing 2, warning=FALSE}
+```{r Housing 2, message=FALSE, warning=FALSE}
 ggplot(credit_table,aes(y = NewCredit, x = HouseSales))+
   geom_point()+
   geom_smooth()+
@@ -138,7 +139,7 @@ ggplot(credit_table,aes(x= Tarih))+
 
 From the time series data, we can observe that the unemployment rate has a high variance with an overall increasing trend. There are several sharp increases. First of them is in last quarter of 2016. This is followed by a decrease in the consumer loans around the same period. The sharp decrease in the unemployment rate in the early 2017 is reflected by a small increase in the consumer loans. Beginning from the second quarter of the 2018, the unemployment rate is starting to increase sharply. In the same period, consumer loans given is also decreasing. Initial observations on the data suggests that there is a negative correlation between unemployment and consumer loans. However, the magnitudes of changes in each data set are often not proportional to each other. Also, timing of the effects on the series do not correspond to each other which suggests that there is a lag between the time series.
 
-```{r Unemployment 2}
+```{r Unemployment 2, message=FALSE}
 ggplot(credit_table,aes(y = NewCredit, x = UnemploymentRate))+
   geom_point()+
   geom_smooth()+
@@ -156,10 +157,10 @@ In this section of our analysis, our aim is to analyze the relationship between 
 + "Konut Kredisi" - for House Sales
 + "İş İlanı" - for Unemployment Rates
 
-The data for the search volumes are collected using Google Trends. Data collected for the years 2016 through 2019. Frequency of observations is once per week.
+The data for the search volumes are collected using [Google Trends](https://trends.google.com/trends/?geo=US). Data collected for the years 2016 through 2019. Frequency of observations is once per week.
 ```{r Part II, echo=FALSE, message=FALSE, warning=FALSE}
 #PART II
-setwd("C:/Users/alpsr/Desktop/Data") # Please change your working directory after downloading the data from Google Trends
+setwd("C:/Users/alpsr/Desktop/Homework 1/Data") # Please change your working directory after downloading the data from Google Trends
 
 #"Consumer Loans - Data collection and cleaning
 google_consloan <- read.csv("tuketici kredisi.csv", header = TRUE)
@@ -281,7 +282,7 @@ ggplot(google_jobs, aes(x = Date, y = JobsSV))+
 
 Scatter plot clearly shows the positive correlation between the variables. There is a clear positive relation between the unemployment rate and Google searched for job postings.
 
-```{r}
+```{r message=FALSE}
 ggplot(google_jobs, aes(x = credit_table$UnemploymentRate, y = JobsSV))+
   geom_point()+
   geom_smooth(method = lm)+
