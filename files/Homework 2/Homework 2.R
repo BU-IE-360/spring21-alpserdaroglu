@@ -42,7 +42,7 @@ cloth_cpi <- raw_data[1:150,c("Tarih", "Year", "Month", "PriceIndex", "Interest"
                               "PPIApparel", "USDTRY", "PPIShoes", "CCI")]
 str(cloth_cpi)
 
-#Descriptive Analysis (WIP) ----
+#Descriptive Analysis ----
 
 ggplot(cloth_cpi, aes(x = Tarih)) + 
   geom_line(aes(y = PriceIndex, color = 'Price Index'))
@@ -108,7 +108,7 @@ ggplot(cloth_cpi, aes(x = Tarih)) +
 ggplot(cloth_cpi, aes(x = Tarih)) +
   geom_line(aes(y = PriceIndex - TrendMonth))
 
-#Linear Regression Version 3 (with PPI Apparel)----
+#Linear Regression Version 3 (not included in th report)----
 
 cloth_cpi[, PPIApparelLag1 := shift(PPIApparel)]
 cloth_cpi[, USDTRYLag1 := shift(USDTRY)]
@@ -148,7 +148,7 @@ ggplot(cloth_cpi, aes(x = Tarih)) +
 ggplot(cloth_cpi, aes(x = USDTRY)) +
   geom_line(aes(y = PriceIndex - V4Predict))
 
-#Linear Regression Version 5 (with usdtry and both PPIs) ----
+#Linear Regression Version 5 (with USDTRY and both PPIs, not included in the report) ----
 
 ts_reg_V5 = lm(PriceIndex~Trend+Month+PPIApparelLag1+CCILag1, cloth_cpi)
 summary(ts_reg_V5)
@@ -164,7 +164,7 @@ ggplot(cloth_cpi, aes(x = Tarih)) +
 ggplot(cloth_cpi, aes(x = Tarih)) +
   geom_line(aes(y = PriceIndex - V4Predict))
 
-#AutoRegressive Model Version 5 ----
+#AutoRegressive Model Version 6 ----
 ts_reg_auto = lm(PriceIndex~Trend+Month+PPIApparelLag1+USDTRYLag1+PriceIndexLag1, cloth_cpi)
 summary(ts_reg_auto)
 
