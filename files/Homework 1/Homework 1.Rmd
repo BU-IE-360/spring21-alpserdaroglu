@@ -127,6 +127,7 @@ ggplot(credit_table,aes(y = NewCredit, x = HouseSales))+
   geom_smooth()+
   labs(title = "House Sales vs Consumer Loans", x = "Consumer Loans (m TL)", y = "House Sales (Units)")
 ```
+
 This scatter plot clearly indicates that there is a positive relationship between two variables. 
 
 ## Unemployment Rate
