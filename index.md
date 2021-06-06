@@ -12,3 +12,7 @@
 
 [R Code for Homework 2](files/Homework 2/Homework 2.R)
 
+## Homework 3 June 6)
+[Homework 3](files/Homework 3/Homework-3.html)
+
+[R Code for Homework 3](files/Homework 3/Homework 3.R)
