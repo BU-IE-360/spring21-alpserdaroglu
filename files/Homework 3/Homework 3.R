@@ -21,13 +21,11 @@ data[, 'Consumption' := as.numeric(Consumption)]
 ggplot(data, aes(x = Date))+
   geom_line(aes(y = Consumption, color = 'Consumption'))
 
-#####
 acf(data[,Consumption])
 Box.test(data$Consumption, type = 'Ljung-Box')
 test <- ur.kpss(data$Consumption, use.lag = 168)
 summary(test)
-print("Mean of the random component:", mean(daily_dec$random, na.rm = TRUE))
-#####
+
 #Analyzing Seasonality----
 
 #Daily - on a hourly level----
@@ -269,71 +267,3 @@ accu=function(actual,forecast){
 
 accu(testdata$Consumption,testdata$AR_forecast)
 accu(testdata$Consumption,testdata$MA_forecast)
-
-head(testdata)
-rem[(length(rem)-100):length(rem)]
-tail(rem)
-print(predict(AR, n.ahead = 20)$pred, digits = 15)
-length(rem)
-?Arima
-tail(rem[!is.na(rem)],1)
-x <- Arima(tail(rem[!is.na(rem)],5), model = MA)
-forecast(Arima(rem[!is.na(rem)], model = AR), h = 10)$mean
-x$residuals
-
-
-predict(x, n.ahead = )
-x$
-?predict.arima0
-forecast()
-forecast(dec$trend, h=10)
-?forecast
-x <- forecast(AR, h=1)
-#test[,'Trend' := dec$]
-x$fitted
-
-MA_for <- forecast(MA,h = 360)
-tail(dec$trend)
-tail(rem)
-plot(rem[47000:47207])
-predict(MA, n.ahead = 68)$pred
-testdata[,'MA_random' := MA_for$mean]
-
-AR_for <- forecast(AR,h = 360)
-testdata[,'AR_random' := AR_for$mean]
-
-testdata[,'MA_forecast' := MA_random+Seasonal+Trend]
-testdata[,'AR_forecast' := AR_random+Trend+Seasonal]
-
-plot(testdata$Consumption-testdata$MA_forecast)
-plot(testdata$Consumption-testdata$AR_forecast)
-acfs <- acf(random, na.action = na.pass) #Sinusodial pattern with period = 24, spikes at lag = 0, 24, 48....
-pacfs <- pacf(random, na.action = na.pass)
-
-#Other ----
-
-#tail(dec$trend[46000:46848])
-#plot(dec)
-#data[ Date == date && Hour == hour, ]
-
-#day(date) <- day(date) + 1
-#hour <- hour + 1
-
-data[Date == 2016-03-27]
-day_avg <- data[,mean(Consumption), by = Day]
-plot(day_avg)
-str(day_avg)
-ggplot(data, aes(x = "Date"))+
-  geom_line(aes(y = "Consumption"))
-ggplot(data)
-?ts.plot
-x <- decompose(data$Consumption)
-?decompose
-tsobj <- ts(data)
-autoplot(tsobj)
-?autoplot
-head(data)
-data[,'COnsumption' := NULL]
-ggplot(data, aes(x = Month))+
-  geom_line(aes(y = mean(Consumption, ), group = factor(year(Date)), color = factor(year(Date))))
-  
