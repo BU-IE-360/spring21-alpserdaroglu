@@ -18,9 +18,9 @@
 [R Code for Homework 3](files/Homework 3/Homework 3.R)
 
 ## Homework 4 & 5 (July 2)
-[Homework 4 & 5](files/Homework 4 & 5/Homework-3.html)
+[Homework 4 & 5](files/Homework 4 & 5/Homework4-5.html)
 
-[R Code for Homework 4 & 5](files/Homework 4 & 5/Homework 3.R)
+[R Code for Homework 4 & 5](files/Homework 4 & 5/Codes.zip)
 
 ## Project (July 2)
 [Project](files/Project/Project-Report.html)
