@@ -20,7 +20,7 @@
 ## Homework 4 & 5 (July 2)
 [Homework 4 & 5](files/Homework 4 & 5/Homework-3.html)
 
-[R Code for Homework 3](files/Homework 4 & 5/Homework 3.R)
+[R Code for Homework 4 & 5](files/Homework 4 & 5/Homework 3.R)
 
 ## Project (July 2)
 [Project](files/Project/Project-Report.html)
