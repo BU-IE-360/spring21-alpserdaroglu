@@ -23,6 +23,6 @@
 [R Code for Homework 4 & 5](files/Homework 4 & 5/Homework 3.R)
 
 ## Project (July 2)
-[Project](files/Project/Project-Report.html)
+[Project](files/Project/Project-Report)
 
 [R Codes for the Project](files/Project/Codes.zip)
